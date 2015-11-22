@@ -1,19 +1,10 @@
-var FBAPP = FBAPP || {};
-var fburl = 'https://p8c8.firebaseio.com';
-
-FBAPP.store =
+var fbase =
 {
-	auth: function ()
-	{
-		var fbref = new Firebase(fburl);
-		var status='';
-
-		fbref.authAnonymously(function(error, authData) {
-        if (error) {
-        		status = 'error:' + error; 
-          } 
-        });
-        return status;
+	fburl :'https://p8c8.firebaseio.com',
+	
+	Authenticate: function () {
+		console.log("inside fbapp");
+        return 0;
 	},
 
 	// This function has to move out

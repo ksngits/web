@@ -31,27 +31,51 @@
     <![endif]-->
 
     <script language="JavaScript">
+
     var auth = function Authenticate()
     {
         var btnel = document.getElementById('result');
         btnel.style.visibility = 'hidden';
+        
+        var p1 = new Promise(
+            function (resolve,reject)
+            {
+                var fbref = new Firebase('https://p8c8.firebaseio.com');        
+                    fbref.authAnonymously(function(error, authData) {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(authData);
+                    }
+                });  
+            }
+         ); 
+
+         p1.then( 
+                function val() {EnableUI();}
+               )
+           .catch(
+                function(){DisableUI();}
+               ); 
+    }
     
-        var status = FBAPP.store.auth();
-        console.log(status);
 
-         if (status) {
-              btnel.setAttribute('class','btn btn-sm btn-danger');
-              btnel.innerHTML ='error';
-              
-          } else {
-              
-              btnel.setAttribute('class','btn btn-sm btn-success');
-              btnel.innerHTML ='Firebase connected successfully' + FBAPP.store.timestamp();
-          }
-
-        btnel.style.visibility = 'visible';
+    function EnableUI()
+    {
+       var btnel = document.getElementById('result');
+       btnel.setAttribute('class','btn btn-sm btn-success');
+       btnel.innerHTML ='Firebase connected successfully';
+       btnel.style.visibility = 'visible';
     }
 
+    function DisableUI()
+    {
+       var btnel = document.getElementById('result');
+       btnel.style.visibility = 'hidden';
+       btnel.setAttribute('class','btn btn-sm btn-danger');
+       btnel.innerHTML ='error';
+       btnel.style.visibility = 'visible';
+    }
     </script>
 
 </head>
@@ -170,6 +194,9 @@
     </div>
     <!-- /#wrapper -->
 
+
+    <!-- <script src="lib/fbase.js"></script> -->
+
     <!-- jQuery -->
     <script src="common/jquery/jquery.min.js"></script>
 
@@ -184,7 +211,14 @@
 
      <!-- firebase -->
     <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
-    <script src="lib/fbase.js"></script>    
+
+    <!--
+        <script language='javascript'>
+            $(window).on('beforeunload', function(){
+                socket.close();
+        });
+    </script>
+    -->
 
 </body>
 
