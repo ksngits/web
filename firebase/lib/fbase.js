@@ -2,12 +2,14 @@ var cliRef = new Firebase('https://p8c8.firebaseio.com/');
 var uid = null;
 
 var OnAuthenticate = function(authData) {
-	if (authData) {
+	if (error)
+  {
+    ShowAnonyMsg(-1);
+  }
+  
+  if (authData) 
+  {
 		ShowAnonyMsg(1);
-	}
-	else
-	{
-		ShowAnonyMsg(-1);
 	}
 	cliRef.offAuth();
 }
