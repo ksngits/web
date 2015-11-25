@@ -29,42 +29,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <script language="JavaScript">
-    var auth = function Authenticate()
-    {
-        var btnel = document.getElementById('result');
-        btnel.style.visibility = 'hidden';
-        var ref = new Firebase("https://resplendent-torch-4777.firebaseio.com");
-
-
-        var currentdate = new Date();
-        var datetime = " : " + currentdate.getDate() + "/"+ (currentdate.getMonth() +1 )
-        + "/" + currentdate.getFullYear() + " @ " 
-        + currentdate.getHours() + ":" 
-        + currentdate.getMinutes() + ":" + currentdate.getSeconds();
-
-        setTimeout(function(){ var t=1;}, 3000);
-
-
-        ref.authAnonymously(function(error, authData) {
-         if (error) {
-              btnel.setAttribute('class','btn btn-sm btn-danger');
-              btnel.innerHTML ='error';
-              
-          } else {
-              
-              btnel.setAttribute('class','btn btn-sm btn-success');
-              btnel.innerHTML ='Firebase connected successfully' + datetime;
-          }
-
-        });
-        
-        btnel.style.visibility = 'visible';
-    }
-
-    </script>
-
 </head>
 
 <body>
@@ -157,7 +121,7 @@
                                         </div>
                                     -->
                                         <div class="form-group input-group">
-                                            <button type="submit" class="btn btn-default" onclick="javascript:auth();">Check Connect</button>
+                                            <button type="submit" class="btn btn-default" onclick="javascript:onLoginButtonClicked();">Check Connect</button>
                                             <!--<button type="reset" class="btn btn-default">Reset Button</button> -->
                                         </div>
                                         <button type="button" id="result" style="visibility:hidden"/>
@@ -195,6 +159,8 @@
 
      <!-- firebase -->
     <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+
+    <script src="lib/fbase.js"></script>
 
 </body>
 
