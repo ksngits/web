@@ -28,14 +28,14 @@ function ShowAnonyMsg (status)
 	if ( status == 1)
 	{
 		document.getElementById('result').innerHTML = 'Firebase connected successfully';
-		document.getElementById('result').setAttribute ='class','btn btn-sm btn-success';;
+		document.getElementById('result').setAttribute('class','btn btn-sm btn-success');
 		document.getElementById('result').style.visibility = 'visible';
 	}
 
 	if ( status == -1)
 	{
 		document.getElementById('result').innerHTML ='Firebase:Authentication Failed ';
-		document.getElementById('result').setAttribute ='class','btn btn-sm btn-danger';
+		document.getElementById('result').setAttribute('class','btn btn-sm btn-danger');
 		document.getElementById('result').style.visibility = 'visible';
 	}
 }

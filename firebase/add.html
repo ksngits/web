@@ -37,25 +37,25 @@
               if ( re.test(email)) 
               {
                    
-                document.getElementById('demail').setAttribute ='class','form-group has-success';
+                document.getElementById('demail').setAttribute('class','form-group has-success');
 
               }  
               else
               {
-                 document.getElementById('demail').setAttribute ='class','form-group has-error';
+                 document.getElementById('demail').setAttribute('class','form-group has-error');
                  return false;
               }
 
               var name = document.getElementById('name').value;
               re = /^[A-Za-z]+$/; 
-              if ( re.test(name)) 
+              if (re.test(name)) 
               {           
                     
-                document.getElementById('dname').setAttribute ='class','form-group has-success';
+                document.getElementById('dname').setAttribute('class','form-group has-success');
               }  
               else
               {
-                 document.getElementById('dname').setAttribute ='class','form-group has-error';
+                 document.getElementById('dname').setAttribute('class','form-group has-error');
                  return false;
               }              
               onAddMemberButtonClicked();
