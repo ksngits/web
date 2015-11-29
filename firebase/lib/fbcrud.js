@@ -1,4 +1,5 @@
-var root = new Firebase('https://p8c8.firebaseio.com/root');
+//var root = new Firebase('https://p8c8.firebaseio.com/p8c8');
+var root = 'https://p8c8.firebaseio.com/';
 
 var urls = {
   path: {
@@ -61,10 +62,45 @@ function onLoginButtonClicked() {
 }
 **/
 
-function onAddMemberButtonClicked() {
-	
+function onAddMemberButtonClicked(email, name) {
+  var userref = new Firebase(urls.path.members); 
+  userref.set (
+                {
+                    member:
+                    {
+                        email:email,
+                        name:name,
+                        created: Firebase.ServerValue.TIMESTAMP
+                    }
+                }
+
+        );
+  onMemberAdded();
+
 } 
 
+function onMemberAdded()
+{
+  var userref = new Firebase(urls.path.members); 
+  // Retrieve new posts as they are added to our database
+  userref.on("child_added", function(snapshot, prevChildKey) {
+    var member = snapshot.val();
+    console.log("Member: " + member.name);
+    console.log("Email: " + member.email);
+    console.log("timestamp: " + member.created);
+    notify(member)
+  });
+}
+
+function notify(member)
+{
+  /** not good but a simple POC **/
+  var d = new Date(member.created);
+  
+  $("#notify").empty();
+  $('#notify').html('<div class="panel-body"><div class="list-group"><a href="#" class="list-group-item"><i class="fa fa-comment fa-fw"></i>' + member.name  + ' - '  + member.email + 
+                    '<span class="pull-right text-muted small"><em>' + d + '</em></span></a></div></div>');
+}
 
 /** Init POC
 
